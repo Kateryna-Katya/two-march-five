@@ -1,24 +1,117 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // 1. ИНИЦИАЛИЗАЦИЯ
     lucide.createIcons();
+    AOS.init({ duration: 1000, once: true });
 
-    AOS.init({
-        duration: 1000,
-        once: true
+    // 2. МОБИЛЬНОЕ МЕНЮ (Anime.js)
+    const burger = document.querySelector('.burger');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+    let isMenuOpen = false;
+
+    const toggleMenu = () => {
+        isMenuOpen = !isMenuOpen;
+        if (isMenuOpen) {
+            mobileMenu.style.right = '0';
+            anime({
+                targets: '.mobile-menu',
+                translateX: ['100%', '0%'],
+                easing: 'easeOutExpo',
+                duration: 600
+            });
+            anime({
+                targets: '.mobile-link',
+                opacity: [0, 1],
+                translateY: [20, 0],
+                delay: anime.stagger(100, {start: 300}),
+                easing: 'easeOutQuad'
+            });
+        } else {
+            anime({
+                targets: '.mobile-menu',
+                translateX: '100%',
+                easing: 'easeInExpo',
+                duration: 500,
+                complete: () => { mobileMenu.style.right = '-100%'; }
+            });
+        }
+    };
+
+    burger.addEventListener('click', toggleMenu);
+    mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+
+    // 3. ВАЛИДАЦИЯ ТЕЛЕФОНА (Только цифры)
+    const phoneInput = document.getElementById('phone-input');
+    phoneInput.addEventListener('input', (e) => {
+        e.target.value = e.target.value.replace(/[^\d+]/g, '');
     });
 
-    // --- ANIME.JS ANIMATIONS ---
+    // 4. МАТЕМАТИЧЕСКАЯ КАПЧА
+    const captchaLabel = document.getElementById('captcha-label');
+    const num1 = Math.floor(Math.random() * 10) + 1;
+    const num2 = Math.floor(Math.random() * 10) + 1;
+    const correctAnswer = num1 + num2;
+    captchaLabel.innerText = `Сколько будет ${num1} + ${num2}?`;
 
-    // Анимация заголовка (побуквенно или плавное появление)
-    anime({
-        targets: '.text-animate',
-        opacity: [0, 1],
-        translateY: [30, 0],
-        duration: 1200,
-        easing: 'easeOutExpo',
-        delay: 500
+    // 5. ОТПРАВКА ФОРМЫ (AJAX имитация)
+    const form = document.getElementById('ai-form');
+    const successMsg = document.getElementById('form-success');
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const userAnswer = parseInt(document.getElementById('captcha-input').value);
+
+        if (userAnswer !== correctAnswer) {
+            alert('Ошибка в капче! Попробуйте еще раз.');
+            return;
+        }
+
+        // Имитация AJAX
+        const btn = form.querySelector('button');
+        btn.innerText = 'Отправка...';
+        btn.style.opacity = '0.7';
+
+        setTimeout(() => {
+            btn.style.display = 'none';
+            successMsg.style.display = 'flex';
+            anime({
+                targets: '#form-success',
+                scale: [0.8, 1],
+                opacity: [0, 1],
+                duration: 500,
+                easing: 'easeOutBack'
+            });
+            form.reset();
+        }, 1500);
     });
 
-    // Анимация "Живой сферы" ИИ
+    // 6. COOKIE POPUP (LocalStorage)
+    const cookiePopup = document.getElementById('cookie-popup');
+    const cookieAccept = document.getElementById('cookie-accept');
+
+    if (!localStorage.getItem('cookies-accepted')) {
+        setTimeout(() => {
+            anime({
+                targets: '#cookie-popup',
+                bottom: ['-100px', '30px'],
+                duration: 1000,
+                easing: 'easeOutExpo'
+            });
+        }, 2000);
+    }
+
+    cookieAccept.addEventListener('click', () => {
+        localStorage.setItem('cookies-accepted', 'true');
+        anime({
+            targets: '#cookie-popup',
+            bottom: '-100px',
+            opacity: 0,
+            duration: 500,
+            easing: 'easeInQuad'
+        });
+    });
+
+    // 7. HERO ANIMATIONS (Anime.js из прошлых этапов)
     anime({
         targets: '.sphere-ring',
         rotate: '1turn',
@@ -28,93 +121,4 @@ document.addEventListener('DOMContentLoaded', () => {
         loop: true,
         easing: 'easeInOutSine'
     });
-
-    anime({
-        targets: '.sphere-core',
-        scale: [1, 1.3],
-        opacity: [0.4, 0.8],
-        duration: 3000,
-        direction: 'alternate',
-        loop: true,
-        easing: 'easeInOutQuad'
-    });
-
-    // Хедер при скролле
-    const header = document.querySelector('.header');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.style.padding = '12px 0';
-            header.style.background = 'rgba(10, 12, 16, 0.9)';
-        } else {
-            header.style.padding = '20px 0';
-            header.style.background = 'transparent';
-        }
-    });
-    // Добавь это внутрь DOMContentLoaded
-
-// Эффект парения для декоративного элемента в инструментах
-anime({
-    targets: '.anime-float',
-    translateY: [-15, 15],
-    translateX: [-10, 10],
-    rotate: [0, 5],
-    duration: 4000,
-    direction: 'alternate',
-    loop: true,
-    easing: 'easeInOutQuad'
-});
-
-// Анимация иконок в карточках при наведении
-const cards = document.querySelectorAll('.practice-card');
-cards.forEach(card => {
-    card.addEventListener('mouseenter', () => {
-        anime({
-            targets: card.querySelector('.practice-card__icon'),
-            scale: 1.2,
-            rotate: '15deg',
-            duration: 400,
-            easing: 'easeOutBack'
-        });
-    });
-    card.addEventListener('mouseleave', () => {
-        anime({
-            targets: card.querySelector('.practice-card__icon'),
-            scale: 1,
-            rotate: '0deg',
-            duration: 400,
-            easing: 'easeOutBack'
-        });
-    });
-});
-    // Добавь это в конец DOMContentLoaded
-
-// Анимация пульсации номеров шагов при скролле (Anime.js)
-const stepObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            anime({
-                targets: entry.target.querySelector('.step-item__num'),
-                scale: [0.8, 1.1, 1],
-                borderColor: ['#0a0c10', '#00ff88'],
-                duration: 800,
-                easing: 'easeOutBack'
-            });
-        }
-    });
-}, { threshold: 0.5 });
-
-document.querySelectorAll('.step-item').forEach(item => stepObserver.observe(item));
-
-// Эффект появления "статистики" в кейсах
-const caseCards = document.querySelectorAll('.case-card');
-caseCards.forEach(card => {
-    card.addEventListener('mouseenter', () => {
-        anime({
-            targets: card.querySelector('.case-card__stat'),
-            translateX: [0, 10, 0],
-            duration: 600,
-            easing: 'easeInOutQuad'
-        });
-    });
-});
 });

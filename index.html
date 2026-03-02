@@ -239,6 +239,61 @@
                 </div>
             </div>
         </section>
+        <section class="contact" id="contact">
+            <div class="container">
+                <div class="contact__grid">
+                    <div class="contact__info" data-aos="fade-right">
+                        <h2 class="section-title">Готовы <span class="text-green">внедрить ИИ?</span></h2>
+                        <p class="section-subtitle">Бесплатная консультация по всем вопросам. Наши эксперты помогут подобрать
+                            решение под ваши задачи.</p>
+        
+                        <div class="contact__cards">
+                            <div class="info-card">
+                                <i data-lucide="help-circle"></i>
+                                <h4>Экспертная поддержка</h4>
+                                <p>На всех этапах внедрения технологии.</p>
+                            </div>
+                            <div class="info-card">
+                                <i data-lucide="shield-check"></i>
+                                <h4>Проверенный партнер</h4>
+                                <p>Методологии, доказавшие эффективность в ЕС.</p>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="contact__form-wrapper" data-aos="fade-left">
+                        <form id="ai-form" class="form">
+                            <div class="form__group">
+                                <input type="text" name="name" class="form__input" placeholder="Ваше имя" required>
+                            </div>
+                            <div class="form__group">
+                                <input type="email" name="email" class="form__input" placeholder="Email" required>
+                            </div>
+                            <div class="form__group">
+                                <input type="text" name="phone" id="phone-input" class="form__input" placeholder="Телефон"
+                                    required>
+                            </div>
+        
+                            <div class="form__captcha">
+                                <label id="captcha-label">Сколько будет 5 + 3?</label>
+                                <input type="text" id="captcha-input" class="form__input" placeholder="Ответ" required>
+                            </div>
+        
+                            <div class="form__agree">
+                                <input type="checkbox" id="agree" required>
+                                <label for="agree">Согласен на обработку персональных данных</label>
+                            </div>
+        
+                            <button type="submit" class="btn btn--primary btn--block">Запросить доступ</button>
+        
+                            <div id="form-success" class="form-message success">
+                                <i data-lucide="check-circle"></i> Сообщение успешно отправлено!
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer class="footer">
@@ -306,7 +361,24 @@
             </div>
         </div>
     </footer>
-
+<div class="mobile-menu">
+    <div class="mobile-menu__inner">
+        <ul class="mobile-menu__list">
+            <li><a href="./#practices" class="mobile-link">Практики</a></li>
+            <li><a href="./#tools" class="mobile-link">Инструменты</a></li>
+            <li><a href="./#learning" class="mobile-link">Обучение</a></li>
+            <li><a href="./#cases" class="mobile-link">Кейсы</a></li>
+            <li><a href="./#contact" class="mobile-link btn btn--primary">Начать сейчас</a></li>
+        </ul>
+    </div>
+</div>
+<div id="cookie-popup" class="cookie-popup">
+    <div class="cookie-popup__content">
+        <p>Этот сайт использует cookies для улучшения работы. Подробнее — в нашей <a href="./cookies.php">Cookie
+                политике</a>.</p>
+        <button id="cookie-accept" class="btn btn--primary btn--sm">Принять</button>
+    </div>
+</div>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
