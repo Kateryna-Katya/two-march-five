@@ -59,7 +59,59 @@ $domainTitle = ucwords(str_replace('-', ' ', $domainSlug));
             </nav>
         </div>
     </header>
+<main>
+    <section class="pages">
+        <div class="container">
+            <h1 data-aos="fade-down">Контактная информация</h1>
 
+            <p data-aos="fade-up">
+                Мы всегда открыты для новых проектов и профессиональных дискуссий о будущем технологий. 
+                Свяжитесь с командой <strong><?= $domainTitle ?></strong> любым удобным для вас способом. 
+                Наши эксперты готовы ответить на ваши вопросы по внедрению ИИ-практик по будням с 09:00 до 18:00 (CET).
+            </p>
+
+            <div class="contact-cards">
+                <div class="contact-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="contact-card__icon">
+                        <i data-lucide="mail"></i>
+                    </div>
+                    <h2>Пишите нам</h2>
+                    <p>Для общих вопросов, предложений и запросов на AI-консалтинг:</p>
+                    <a href="mailto:support@<?= $fullDomain ?>" class="contact-link">support@<?= $fullDomain ?></a>
+                </div>
+
+                <div class="contact-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="contact-card__icon">
+                        <i data-lucide="phone"></i>
+                    </div>
+                    <h2>Звоните</h2>
+                    <p>Прямая линия экспертной поддержки и консультаций по всей Европе:</p>
+                    <a href="tel:+390697615583" class="contact-link">+390697615583</a>
+                </div>
+
+                <div class="contact-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="contact-card__icon">
+                        <i data-lucide="map-pin"></i>
+                    </div>
+                    <h2>Наш офис</h2>
+                    <p>Центральный хаб <strong><?= $domainTitle ?></strong> расположен в Германии:</p>
+                    <address class="contact-address">
+                        Friedrichstraße 121,<br>
+                        10117 Berlin,<br>
+                        Germany
+                    </address>
+                </div>
+            </div>
+
+            <div class="contact-extra" data-aos="fade-up">
+                <p>
+                    Вы также можете воспользоваться формой обратной связи на 
+                    <a href="./#contact" class="text-orange">главной странице</a> для мгновенного запроса доступа к платформе.
+                </p>
+            </div>
+        </div>
+    </section>
+</main>
 
 
     <footer class="footer">
