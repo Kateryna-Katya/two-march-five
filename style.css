@@ -859,3 +859,65 @@ a {
         gap: 40px;
     }
 }
+/* --- LEGAL PAGES STYLES --- */
+.pages {
+    padding: 160px 0 100px;
+    min-height: 80vh;
+}
+
+.pages .container {
+    max-width: 800px;
+    /* Сужаем для удобства чтения текста */
+    margin: 0 auto;
+}
+
+.pages h1 {
+    font-size: clamp(1.6rem, 4vw, 3.5rem);
+    color: var(--color-primary);
+    margin-bottom: 40px;
+    font-weight: 800;
+}
+
+.pages h2 {
+    font-size: 1.4rem;
+    color: var(--color-secondary);
+    margin: 40px 0 20px;
+}
+
+.pages p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--color-text);
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+.pages ul {
+    margin: 20px 0 30px 20px;
+    list-style: none;
+}
+
+.pages ul li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 12px;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+}
+
+.pages ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 8px;
+    height: 8px;
+    background: var(--color-primary);
+    border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+    .pages {
+        padding-top: 120px;
+    }
+}
