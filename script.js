@@ -50,4 +50,40 @@ document.addEventListener('DOMContentLoaded', () => {
             header.style.background = 'transparent';
         }
     });
+    // Добавь это внутрь DOMContentLoaded
+
+// Эффект парения для декоративного элемента в инструментах
+anime({
+    targets: '.anime-float',
+    translateY: [-15, 15],
+    translateX: [-10, 10],
+    rotate: [0, 5],
+    duration: 4000,
+    direction: 'alternate',
+    loop: true,
+    easing: 'easeInOutQuad'
+});
+
+// Анимация иконок в карточках при наведении
+const cards = document.querySelectorAll('.practice-card');
+cards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+        anime({
+            targets: card.querySelector('.practice-card__icon'),
+            scale: 1.2,
+            rotate: '15deg',
+            duration: 400,
+            easing: 'easeOutBack'
+        });
+    });
+    card.addEventListener('mouseleave', () => {
+        anime({
+            targets: card.querySelector('.practice-card__icon'),
+            scale: 1,
+            rotate: '0deg',
+            duration: 400,
+            easing: 'easeOutBack'
+        });
+    });
+});
 });
