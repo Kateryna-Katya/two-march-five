@@ -1030,3 +1030,39 @@ a {
     border: none;
     padding: 0;
 }
+/* --- CUSTOM NUMBERED LIST --- */
+.custom-list {
+    counter-reset: step-counter;
+    margin: 30px 0;
+}
+
+.custom-list li {
+    position: relative;
+    padding-left: 50px;
+    margin-bottom: 25px;
+    list-style: none;
+    line-height: 1.6;
+}
+
+.custom-list li::before {
+    content: counter(step-counter);
+    counter-increment: step-counter;
+    position: absolute;
+    left: 0;
+    top: -2px;
+    width: 32px;
+    height: 32px;
+    background: rgba(0, 255, 136, 0.1);
+    border: 1px solid var(--color-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.9rem;
+    color: var(--color-primary);
+}
+
+.custom-list li strong {
+    color: var(--color-secondary);
+}
