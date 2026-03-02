@@ -86,4 +86,35 @@ cards.forEach(card => {
         });
     });
 });
+    // Добавь это в конец DOMContentLoaded
+
+// Анимация пульсации номеров шагов при скролле (Anime.js)
+const stepObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            anime({
+                targets: entry.target.querySelector('.step-item__num'),
+                scale: [0.8, 1.1, 1],
+                borderColor: ['#0a0c10', '#00ff88'],
+                duration: 800,
+                easing: 'easeOutBack'
+            });
+        }
+    });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.step-item').forEach(item => stepObserver.observe(item));
+
+// Эффект появления "статистики" в кейсах
+const caseCards = document.querySelectorAll('.case-card');
+caseCards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+        anime({
+            targets: card.querySelector('.case-card__stat'),
+            translateX: [0, 10, 0],
+            duration: 600,
+            easing: 'easeInOutQuad'
+        });
+    });
+});
 });
